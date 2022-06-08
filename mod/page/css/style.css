@@ -1,0 +1,110 @@
+/**
+ * Style.
+ * 
+ * @author  Mario Sakamoto <mskamot@gmail.com>
+ * @license MIT http://www.opensource.org/licenses/MIT
+ * @see     https://wtag.com.br/divmon
+ */
+
+/*
+ * Reset
+ */
+html, body, div, span,
+table, thead, tbody, tfoot, tr, th, td,
+form, label, input, textarea, select, option, button,
+ul, li,
+h1, h2, h3, h4, h5, h6, p,
+img,
+a,
+pre, code,
+iframe {}
+
+html {}
+
+body {
+	font-family: 'Khand', sans-serif;
+}
+
+div {}
+
+span {}
+
+table {}
+
+thead {}
+
+tbody {}
+
+tfoot {}
+
+tr {}
+
+th {}
+
+td {}
+
+form {}
+
+label {}
+
+input {}
+
+textarea {}
+
+select {}
+
+option {}
+
+ul {}
+
+li {}
+
+h1 {}
+
+h2 {}
+
+h3 {}
+
+h4 {}
+
+h5 {}
+
+h6 {}
+
+p {}
+
+img {}
+
+a {}
+
+
+.navbar{
+	background-color: #4200FF;
+}
+
+.menu-screen {
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+
+
+
+
+
+
+
+
+.info{
+	background-image: url('https://www.iagente.com.br/blog/wp-content/uploads/email-messages-network-circuit-board-link-connection-technology-scaled.jpg');
+}
+
+/**
+ * Id
+ */
+
+/*
+ * Class
+ */

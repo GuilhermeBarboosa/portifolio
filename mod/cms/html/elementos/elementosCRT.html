@@ -1,0 +1,186 @@
+<!-- Create View -->
+	
+	<!-- Content -->
+
+	<div id="gz-content" class="dv-f-r">
+	
+		<p class="dv-mt-mdpi dv-mr-xdpi dv-mb-mdpi dv-ml-xdpi gz-gray">
+		
+			<one(titles)>
+			
+				<gz>menus.menu</gz> /
+
+				<gz>telas.tela</gz> / 
+				
+				<span class="gz-black gz-bold">
+				
+					@_LAN_CREATE
+					
+				</span>
+				
+			</one>	
+				
+		</p>
+	
+		<!-- Form -->
+
+		<form id="gz-form" class="dv-f-l dv-ml-xdpi dv-pt-ldpi">
+						
+			<!-- Elemento -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Elemento</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+						id="elementos.elemento" name="elementos.elemento" value="">
+				
+			</div>
+					
+			<!-- Tipo_linha -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Tipo_linha</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="elementos.tipos_linhas" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(tipos_linhas)>
+
+						<option value="<gz>tipos_linhas.id</gz>">
+						
+							<gz>tipos_linhas.tipo_linha</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+					
+			<!-- Tipo_coluna -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Tipo_coluna</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="elementos.tipos_colunas" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(tipos_colunas)>
+
+						<option value="<gz>tipos_colunas.id</gz>">
+						
+							<gz>tipos_colunas.tipo_coluna</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+					
+			<!-- Situacao_registro -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Situacao_registro</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="elementos.situacoes_registros" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(situacoes_registros)>
+
+						<option value="<gz>situacoes_registros.id</gz>">
+						
+							<gz>situacoes_registros.situacao_registro</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+					
+			<!-- Cor -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Cor</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="elementos.cores" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(cores)>
+
+						<option value="<gz>cores.id</gz>">
+						
+							<gz>cores.cor</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+
+			<!-- Ok -->
+
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-xdpi">
+
+				<a href="#" onclick="request('elementos', 'create'); return false;" class="gz-tooltip">
+
+					<img src="@_ROOT/mod/cms/img/icon/ok.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_CONFIRM
+
+					</span>
+
+				</a>
+
+			</div>
+			
+			<!-- Cancel -->
+			
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-xdpi">
+
+				<a href="#" onclick="cancel(); return false;" class="gz-tooltip">
+
+					<img src="@_ROOT/mod/cms/img/icon/cancel.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_CANCEL
+
+					</span>
+
+				</a>
+
+			</div>
+				
+		</form>
+	
+	</div>

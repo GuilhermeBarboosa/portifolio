@@ -1,0 +1,153 @@
+<!-- Create View -->
+	
+	<!-- Content -->
+
+	<div id="gz-content" class="dv-f-r">
+	
+		<p class="dv-mt-mdpi dv-mr-xdpi dv-mb-mdpi dv-ml-xdpi gz-gray">
+		
+			<one(titles)>
+			
+				<gz>menus.menu</gz> /
+
+				<gz>telas.tela</gz> / 
+				
+				<span class="gz-black gz-bold">
+				
+					@_LAN_CREATE
+					
+				</span>
+				
+			</one>	
+				
+		</p>
+	
+		<!-- Form -->
+
+		<form id="gz-form" class="dv-f-l dv-ml-xdpi dv-pt-ldpi">
+						
+			<!-- Contato -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Contato</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<textarea class="gz-textarea-mdpi dv-f-l dv-mt-ldpi"
+						id="contatos.contato" name="contatos.contato"></textarea>
+				
+			</div>
+						
+			<!-- Nome -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Nome</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi" type="text" 
+						id="contatos.nome" name="contatos.nome" value="">
+				
+			</div>
+						
+			<!-- Email -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Email</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-mdpi dv-f-l dv-mt-ldpi gz-email" type="text" 
+						id="contatos.email" name="contatos.email" value="">
+				
+			</div>
+						
+			<!-- Celular -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-ldpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Celular</div>
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+							
+				<input class="gz-textbox-ldpi dv-f-l dv-mt-ldpi gz-cellphone" type="text" 
+						id="contatos.celular" name="contatos.celular" value="">
+				
+			</div>
+					
+			<!-- Situacao_contato -->
+			
+			<div class="gz-block dv-f-l">
+		
+				<div class="gz-label-mdpi dv-f-l dv-pt-mdpi dv-pb-mdpi">Situacao_contato</div> 
+			
+			</div>
+			
+			<div class="gz-block dv-f-l">
+			
+				<select id="contatos.situacoes_contatos" class="gz-select-mdpi dv-f-l dv-mt-ldpi gz-required">
+					
+					<for(situacoes_contatos)>
+
+						<option value="<gz>situacoes_contatos.id</gz>">
+						
+							<gz>situacoes_contatos.situacao_contato</gz>
+						
+						</option>
+
+					</for>
+					
+				</select>
+
+			</div>
+
+			<!-- Ok -->
+
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mr-hdpi dv-mb-xdpi">
+
+				<a href="#" onclick="request('contatos', 'create'); return false;" class="gz-tooltip">
+
+					<img src="@_ROOT/mod/cms/img/icon/ok.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_CONFIRM
+
+					</span>
+
+				</a>
+
+			</div>
+			
+			<!-- Cancel -->
+			
+			<div class="gz-button dv-f-l dv-mt-mdpi dv-mb-xdpi">
+
+				<a href="#" onclick="cancel(); return false;" class="gz-tooltip">
+
+					<img src="@_ROOT/mod/cms/img/icon/cancel.png" />
+
+					<span class="gz-span-top-right @_THEME">
+
+						@_LAN_CANCEL
+
+					</span>
+
+				</a>
+
+			</div>
+				
+		</form>
+	
+	</div>
