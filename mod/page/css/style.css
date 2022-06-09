@@ -48,7 +48,9 @@ html {
 	font-family: 'Khand', sans-serif;
 }
 
-body {}
+body {
+	background-color: black;
+}
 
 div {}
 
@@ -80,15 +82,22 @@ select {}
 
 option {}
 
-ul {}
+ul {
+	color: white;
+}
 
-li {}
+li {
+	color: white;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 35px;
+}
 
 h1 {}
 
 h2 {}
 
-h3 {}
+h3 {color: white;}
 
 h4 {}
 
@@ -96,15 +105,21 @@ h5 {}
 
 h6 {}
 
-p {}
+p {color: white;}
 
 img {}
 
 a {}
 
+a:focus{
+	outline-width: 0px !important;
+	outline-style: solid;
+	outline-color: #bbdefb;	
+}
 
 .navbar {
-	background-color: #4200FF;
+	background-color: #0F0038;
+	/* background-color: #ff0000; */
 }
 
 .menu-screen {
@@ -114,36 +129,21 @@ a {}
 	line-height: 24px;
 }
 
-
-
-
-
-
-
-
-
 .info {
 	background-image: url('https://www.iagente.com.br/blog/wp-content/uploads/email-messages-network-circuit-board-link-connection-technology-scaled.jpg');
-	padding: 130px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .img-redes {
 	margin: 10px;
-	border: 1px solid #FFFFFF;
+	border: 2px solid #FFFFFF;
 	border-radius: 70px;
-	background-color: #4200FF;
+	background-color: #0F0038;
 	padding: 20px;
 	color: white;
 }
 
-.img-redes-mobile{
-	margin: 10px;
-	border: 1px solid #FFFFFF;
-	border-radius: 70px;
-	background-color: #4200FF;
-	padding: 15px;
-	color: white;
-}
 
 h1 {
 	font-family: 'Khand';
@@ -156,6 +156,7 @@ h1 {
 }
 
 .title {
+	opacity: 1;
 	font-family: 'Khand';
 	font-style: normal;
 	font-weight: 400;
@@ -164,6 +165,57 @@ h1 {
 	color: white;
 }
 
+.sobremim {
+	color: black;
+	font-family: 'Khand';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: justify;
+	padding: 70px;
+	padding-top: 30px;
+}
+
+.github {
+	width: 15em;
+	height: auto;
+	border-radius: 200px;
+}
+
+.link-git {
+	color: #4200FF;
+	font-family: 'Khand';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 35px;
+	line-height: 80px;
+}
+
+.cursos{
+	margin-bottom: 20px;
+	padding-top: 40px;
+}
+.logo-linguagens svg{
+	width: 70px;
+	height: 70px;
+	fill: currentColor;
+	margin-top: 55px;
+	
+}
+
+#logo-div{
+	margin-bottom: 35px;
+}
+
+#logo-div:hover{
+	transition: 0.8s;
+transform: translateY(-15px);
+}
+
+.footer{
+	border-bottom: 1px solid blue;
+	margin: 20px;
+}
 /**
  * Id
  */
