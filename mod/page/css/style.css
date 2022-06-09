@@ -134,12 +134,16 @@ a:focus {
 }
 
 .info {
-	/* background-image: url('https://www.iagente.com.br/blog/wp-content/uploads/email-messages-network-circuit-board-link-connection-technology-scaled.jpg'); */
-
 	background-image: url('../img/homedev.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 100%;
+}
+
+.info-mobile {
+	background-image: url('../img/homedev.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .img-redes {
@@ -175,7 +179,7 @@ h1 {
 	padding-bottom: 20px;
 }
 
-.h1-mobile{
+.h1-mobile {
 	font-family: 'Khand';
 	font-style: normal;
 	font-weight: 300;
@@ -184,6 +188,7 @@ h1 {
 	color: white;
 	padding-bottom: 20px;
 }
+
 .title {
 	opacity: 1;
 	font-family: 'Khand';
@@ -194,7 +199,7 @@ h1 {
 	color: white;
 }
 
-.title-mobile{
+.title-mobile {
 	opacity: 1;
 	font-family: 'Khand';
 	font-style: normal;
@@ -213,6 +218,18 @@ h1 {
 	text-align: justify;
 	padding: 70px;
 	padding-top: 30px;
+}
+
+.sobremim-mobile{
+	color: black;
+	font-family: 'Khand';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5em;
+	text-align: justify;
+	padding: 70px;
+	padding-top: 30px;
+	padding-bottom: 15px;
 }
 
 .github {
@@ -243,7 +260,7 @@ h1 {
 
 }
 
-.logo-linguagens-mobile svg{
+.logo-linguagens-mobile svg {
 	width: 50px;
 	height: 50px;
 	margin: 40px;
