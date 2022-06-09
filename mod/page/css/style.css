@@ -97,7 +97,9 @@ h1 {}
 
 h2 {}
 
-h3 {color: white;}
+h3 {
+	color: white;
+}
 
 h4 {}
 
@@ -105,16 +107,18 @@ h5 {}
 
 h6 {}
 
-p {color: white;}
+p {
+	color: white;
+}
 
 img {}
 
 a {}
 
-a:focus{
+a:focus {
 	outline-width: 0px !important;
 	outline-style: solid;
-	outline-color: #bbdefb;	
+	outline-color: #bbdefb;
 }
 
 .navbar {
@@ -130,20 +134,36 @@ a:focus{
 }
 
 .info {
-	background-image: url('https://www.iagente.com.br/blog/wp-content/uploads/email-messages-network-circuit-board-link-connection-technology-scaled.jpg');
+	/* background-image: url('https://www.iagente.com.br/blog/wp-content/uploads/email-messages-network-circuit-board-link-connection-technology-scaled.jpg'); */
+
+	background-image: url('../img/homedev.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: 100%;
 }
 
 .img-redes {
 	margin: 10px;
 	border: 2px solid #FFFFFF;
 	border-radius: 70px;
-	background-color: #0F0038;
+	background-color: #000000;
 	padding: 20px;
-	color: white;
+	color: #0026ff;
 }
 
+.img-redes-mobile {
+	margin: 10px;
+	border: 2px solid #FFFFFF;
+	border-radius: 70px;
+	background-color: #000000;
+	padding: 10px;
+	color: #0026ff;
+	margin-bottom: 35px;
+}
+
+.img-redes-mobile svg {
+	width: 30px;
+}
 
 h1 {
 	font-family: 'Khand';
@@ -155,12 +175,31 @@ h1 {
 	padding-bottom: 20px;
 }
 
+.h1-mobile{
+	font-family: 'Khand';
+	font-style: normal;
+	font-weight: 300;
+	font-size: 110px;
+	line-height: 75px;
+	color: white;
+	padding-bottom: 20px;
+}
 .title {
 	opacity: 1;
 	font-family: 'Khand';
 	font-style: normal;
 	font-weight: 400;
 	font-size: 55px;
+	line-height: 52px;
+	color: white;
+}
+
+.title-mobile{
+	opacity: 1;
+	font-family: 'Khand';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 40px;
 	line-height: 52px;
 	color: white;
 }
@@ -191,31 +230,41 @@ h1 {
 	line-height: 80px;
 }
 
-.cursos{
+.cursos {
 	margin-bottom: 20px;
 	padding-top: 40px;
 }
-.logo-linguagens svg{
+
+.logo-linguagens svg {
 	width: 70px;
 	height: 70px;
 	fill: currentColor;
 	margin-top: 55px;
-	
+
 }
 
-#logo-div{
+.logo-linguagens-mobile svg{
+	width: 50px;
+	height: 50px;
+	margin: 40px;
+	margin-bottom: 0;
+}
+
+#logo-div {
 	margin-bottom: 35px;
+	text-align: center;
 }
 
-#logo-div:hover{
+#logo-div:hover {
 	transition: 0.8s;
-transform: translateY(-15px);
+	transform: translateY(-15px);
 }
 
-.footer{
+.footer {
 	border-bottom: 1px solid blue;
 	margin: 20px;
 }
+
 /**
  * Id
  */
