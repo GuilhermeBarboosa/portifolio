@@ -134,14 +134,14 @@ a:focus {
 }
 
 .info {
-	background-image: url('../img/homedev.jpg');
+	background-image: url('../img/homedev-2.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 100%;
 }
 
 .info-mobile {
-	background-image: url('../img/homedev.jpg');
+	background-image: url('../img/homedev-2.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -150,7 +150,8 @@ a:focus {
 	margin: 10px;
 	border: 2px solid #FFFFFF;
 	border-radius: 70px;
-	background-color: #000000;
+	/* background-color: #000000; */
+	background-color: rgba(0, 0, 0, 0.6);
 	padding: 20px;
 	color: #0026ff;
 }
@@ -159,7 +160,7 @@ a:focus {
 	margin: 10px;
 	border: 2px solid #FFFFFF;
 	border-radius: 70px;
-	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.6);
 	padding: 10px;
 	color: #0026ff;
 	margin-bottom: 35px;
