@@ -115,6 +115,10 @@
 			return new model\UsuariosDao($this->getConnection());
 		}
 		
+		public function getCursoDao() {
+			return new model\CursoDao($this->getConnection());
+		}
+		
 	}
 	
 ?>

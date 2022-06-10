@@ -19,13 +19,13 @@
 	$where = "";
 	
 	if ($search != "")
-		$where = "perfil_tela.modificado LIKE \"%" . $search . "%\"";	
+		$where = "curso.descricao LIKE \"%" . $search . "%\"";	
 		
 	if ($code != "")
-		$where = "perfil_tela.id = " . $code;
+		$where = "curso.id = " . $code;
 	
 	if (isset($_GET["friendly"]))
-		$where = "perfil_tela.modificado = \"" . removeLine($_GET["friendly"]) . "\"";	
+		$where = "curso.descricao = \"" . removeLine($_GET["friendly"]) . "\"";	
 		
 	$limit = "";	
 	
@@ -39,10 +39,10 @@
 		}		
 	} else {
 		if ($method == "stateReadAll" || $method == "stateCalledAll") {
-			$limit = "perfil_tela.ordem ASC";	
+			$limit = "curso.ordem ASC";	
 		} else {
 			if ($position > 0 && $itensPerPage > 0) {
-				$limit = "perfil_tela.id DESC LIMIT " . 
+				$limit = "curso.id DESC LIMIT " . 
 						(($position * $itensPerPage) - $itensPerPage) . ", " . $itensPerPage;	
 			}
 		}
@@ -64,16 +64,16 @@
 		$view->setKeywords("");
 		
 		$daoFactory->beginTransaction();
-		$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
+		$response["curso"] = $daoFactory->getCursoDao()->read($where, $limit, true);
 		$daoFactory->close();
 		
 		if (isset($_GET["friendly"]))
-			$view->setTitle($response["perfil_tela"][0]["perfil_tela.modificado"]);
+			$view->setTitle($response["curso"][0]["curso.descricao"]);
 
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/header.html", $response);
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . 
-				(isset($_GET["friendly"]) ? "/html/perfil_tela.html" : "/html/perfil_tela.html"), $response);
+				(isset($_GET["friendly"]) ? "/html/curso.html" : "/html/curso.html"), $response);
 		
 		echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/footer.html", $response);
 	}
@@ -92,14 +92,12 @@
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 
 			$daoFactory->beginTransaction();
-			$perfil_tela = new model\Perfil_tela();
-			$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setPerfil($request["perfil_tela.perfil"]);
-			$perfil_tela->setTipo_permissao($request["perfil_tela.tipo_permissao"]);
-			$perfil_tela->setTela($request["perfil_tela.tela"]);
+			$curso = new model\Curso();
+			$curso->setDescricao(logicNull($request["curso.descricao"]));
+			$curso->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$curso->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			
-			$resultDao = $daoFactory->getPerfil_telaDao()->create($perfil_tela);
+			$resultDao = $daoFactory->getCursoDao()->create($curso);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -126,16 +124,16 @@
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
 			
-			$limit = "perfil_tela.id DESC LIMIT " . 
+			$limit = "curso.id DESC LIMIT " . 
 					(($request[0]["page"] * $request[0]["pageSize"]) - 
 					$request[0]["pageSize"]) . ", " . $request[0]["pageSize"];	
 		}
 		
 		$daoFactory->beginTransaction();
-		$perfil_tela = $daoFactory->getPerfil_telaDao()->read("", $limit, false);
+		$curso = $daoFactory->getCursoDao()->read("", $limit, false);
 		$daoFactory->close();
 		
-		echo $view->json($perfil_tela);
+		echo $view->json($curso);
 	}
 	
 	/*
@@ -147,16 +145,14 @@
 			$request = json_decode($_POST["request"], true);
 			// $request[0]["@_PARAM"] = $daoFactory->prepare($request[0]["@_PARAM"]); // Prepare with sql injection.
 			
-			$perfil_tela = new model\Perfil_tela();
-			$perfil_tela->setId($request["perfil_tela.id"]);
-			$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setPerfil($request["perfil_tela.perfil"]);
-			$perfil_tela->setTipo_permissao($request["perfil_tela.tipo_permissao"]);
-			$perfil_tela->setTela($request["perfil_tela.tela"]);
+			$curso = new model\Curso();
+			$curso->setId($request["curso.id"]);
+			$curso->setDescricao(logicNull($request["curso.descricao"]));
+			$curso->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$curso->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			
 			$daoFactory->beginTransaction();
-			$resultDao = $daoFactory->getPerfil_telaDao()->update($perfil_tela);
+			$resultDao = $daoFactory->getCursoDao()->update($curso);
 
 			if ($resultDao) {
 				$daoFactory->commit();
@@ -181,17 +177,17 @@
 		enableCORS();
 		if (isset($_POST["request"])) {
 			$request = json_decode($_POST["request"], true);
-			$request["perfil_tela.id"] = $daoFactory->prepare($request["perfil_tela.id"]); // Prepare with sql injection.
+			$request["curso.id"] = $daoFactory->prepare($request["curso.id"]); // Prepare with sql injection.
 				
 			$result = true;
-			$lines = explode("<gz>", $request["perfil_tela.id"]);
+			$lines = explode("<gz>", $request["curso.id"]);
 
 			$daoFactory->beginTransaction();
 
 			for ($i = 0; $i < sizeof($lines); $i++) {
-				$where = "perfil_tela.id = " . $lines[$i];
+				$where = "curso.id = " . $lines[$i];
 				
-				$resultDao = $daoFactory->getPerfil_telaDao()->delete($where);
+				$resultDao = $daoFactory->getCursoDao()->delete($where);
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
 
@@ -214,31 +210,27 @@
 	else if ($method == "changeOrder") {		
 		$result = true;
 		$daoFactory->beginTransaction();
-		$call = $daoFactory->getPerfil_telaDao()->read("perfil_tela.id = " . $form[0], "", false);
-		$answer = $daoFactory->getPerfil_telaDao()->read("perfil_tela.id = " . $form[1], "", false);
-		$perfil_telaDao = $daoFactory->getPerfil_telaDao()->read("perfil_tela.ordem >= " . $answer[0]["perfil_tela.ordem"], "", false);
-		if (is_array($perfil_telaDao) && sizeof($perfil_telaDao) > 0) {
-			for ($x = 0; $x < sizeof($perfil_telaDao); $x++) {
-				$perfil_tela = new model\Perfil_tela();
-				$perfil_tela->setId($perfil_telaDao[$x]["perfil_tela.id"]);
-				$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setPerfil($perfil_telaDao[$x]["perfil_tela.perfil"]);
-			$perfil_tela->setTipo_permissao($perfil_telaDao[$x]["perfil_tela.tipo_permissao"]);
-			$perfil_tela->setTela($perfil_telaDao[$x]["perfil_tela.tela"]);
+		$call = $daoFactory->getCursoDao()->read("curso.id = " . $form[0], "", false);
+		$answer = $daoFactory->getCursoDao()->read("curso.id = " . $form[1], "", false);
+		$cursoDao = $daoFactory->getCursoDao()->read("curso.ordem >= " . $answer[0]["curso.ordem"], "", false);
+		if (is_array($cursoDao) && sizeof($cursoDao) > 0) {
+			for ($x = 0; $x < sizeof($cursoDao); $x++) {
+				$curso = new model\Curso();
+				$curso->setId($cursoDao[$x]["curso.id"]);
+				$curso->setDescricao(logicNull($cursoDao[$x]["curso.descricao"]));
+			$curso->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$curso->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			
-				$resultDao = $daoFactory->getPerfil_telaDao()->update($perfil_tela);			
+				$resultDao = $daoFactory->getCursoDao()->update($curso);			
 				$result = !$result ? false : (!$resultDao ? false : true);
 			}
-			$perfil_tela = new model\Perfil_tela();
-			$perfil_tela->setId($call[0]["perfil_tela.id"]);
-			$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-			$perfil_tela->setPerfil($call[0]["perfil_tela.perfil"]);
-			$perfil_tela->setTipo_permissao($call[0]["perfil_tela.tipo_permissao"]);
-			$perfil_tela->setTela($call[0]["perfil_tela.tela"]);
+			$curso = new model\Curso();
+			$curso->setId($call[0]["curso.id"]);
+			$curso->setDescricao(logicNull($call[0]["curso.descricao"]));
+			$curso->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+			$curso->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 			
-			$resultDao = $daoFactory->getPerfil_telaDao()->update($perfil_tela);			
+			$resultDao = $daoFactory->getCursoDao()->update($curso);			
 			$result = !$result ? false : (!$resultDao ? false : true);
 		}
 		if ($result) {
@@ -269,13 +261,10 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfis"] = $daoFactory->getPerfisDao()->read("", "perfis.id ASC", false);
-					$response["tipos_permissoes"] = $daoFactory->getTipos_permissoesDao()->read("", "tipos_permissoes.id ASC", false);
-					$response["telas"] = $daoFactory->getTelasDao()->read("", "telas.id ASC", false);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaCRT.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/curso/cursoCRT.html", $response);
 				}
 			}
 
@@ -291,14 +280,14 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
-					if (!is_array($response["perfil_tela"])) {
+					$response["curso"] = $daoFactory->getCursoDao()->read($where, $limit, true);
+					if (!is_array($response["curso"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaRD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/curso/cursoRD.html", $response);
 				}
 			}
 
@@ -311,32 +300,11 @@
 				else {
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, "", true);
-					$response["perfil_tela"][0]["perfil_tela.perfil"] = $daoFactory->getPerfisDao()->read("", "perfis.id ASC", false);
-					for ($x = 0; $x < sizeof($response["perfil_tela"][0]["perfil_tela.perfil"]); $x++) {
-						if ($response["perfil_tela"][0]["perfil_tela.perfil"][$x]["perfis.id"] == 
-								$response["perfil_tela"][0]["perfil_tela.perfil"]) {
-							$response["perfil_tela"][0]["perfil_tela.perfil"][$x]["perfis.selected"] = "selected";
-						}
-					}
-					$response["perfil_tela"][0]["perfil_tela.tipos_permissoes"] = $daoFactory->getTipos_permissoesDao()->read("", "tipos_permissoes.id ASC", false);
-					for ($x = 0; $x < sizeof($response["perfil_tela"][0]["perfil_tela.tipos_permissoes"]); $x++) {
-						if ($response["perfil_tela"][0]["perfil_tela.tipos_permissoes"][$x]["tipos_permissoes.id"] == 
-								$response["perfil_tela"][0]["perfil_tela.tipo_permissao"]) {
-							$response["perfil_tela"][0]["perfil_tela.tipos_permissoes"][$x]["tipos_permissoes.selected"] = "selected";
-						}
-					}
-					$response["perfil_tela"][0]["perfil_tela.telas"] = $daoFactory->getTelasDao()->read("", "telas.id ASC", false);
-					for ($x = 0; $x < sizeof($response["perfil_tela"][0]["perfil_tela.telas"]); $x++) {
-						if ($response["perfil_tela"][0]["perfil_tela.telas"][$x]["telas.id"] == 
-								$response["perfil_tela"][0]["perfil_tela.tela"]) {
-							$response["perfil_tela"][0]["perfil_tela.telas"][$x]["telas.selected"] = "selected";
-						}
-					}
+					$response["curso"] = $daoFactory->getCursoDao()->read($where, "", true);
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaUPD.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/curso/cursoUPD.html", $response);
 				}
 			}
 
@@ -354,20 +322,20 @@
 					 * Insert your foreign key here
 					 */
 					if ($where != "")
-						$where .= " AND perfil_tela.perfil = " . $base;
+						$where .= " AND curso.@_FOREIGN_KEY = " . $base;
 					else 
-						$where = "perfil_tela.perfil = " . $base;
+						$where = "curso.@_FOREIGN_KEY = " . $base;
 						
 					$daoFactory->beginTransaction();
 					$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-					$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
-					if (!is_array($response["perfil_tela"])) {
+					$response["curso"] = $daoFactory->getCursoDao()->read($where, $limit, true);
+					if (!is_array($response["curso"])) {
 						$response["data_not_found"][0]["value"] = "<p>Não possui registro.</p>";
 					}
 					$daoFactory->close();
 
 					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/menus/menusCST.html", getMenu($daoFactory, $_USER, $screen));
-					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaCLL.html", $response);
+					echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/curso/cursoCLL.html", $response);
 				}
 			}
 
@@ -380,21 +348,21 @@
 					
 					if (sizeof($arrBase) > 1) {
 						if ($where != "")
-							$where .= " AND perfil_tela.@_FOREIGN_KEY = " . $arrBase[1];
+							$where .= " AND curso.@_FOREIGN_KEY = " . $arrBase[1];
 						else
-							$where = "perfil_tela.@_FOREIGN_KEY = " . $arrBase[1];
+							$where = "curso.@_FOREIGN_KEY = " . $arrBase[1];
 					}
 				}
 				
-				$limit = "perfil_tela.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
+				$limit = "curso.id DESC LIMIT " . (($position * 5) - 5) . ", 5";
 
 				$daoFactory->beginTransaction();
 				$response["titles"] = $daoFactory->getTelasDao()->read("telas.identificador = \"" . $screen . "\"", "", true);
-				$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->read($where, $limit, true);
+				$response["curso"] = $daoFactory->getCursoDao()->read($where, $limit, true);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaSCR.html", $response) . 
-						"<size>" . (is_array($response["perfil_tela"]) ? $response["perfil_tela"][0]["perfil_tela.size"] : 0) . "<theme>455a64";
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/curso/cursoSCR.html", $response) . 
+						"<size>" . (is_array($response["curso"]) ? $response["curso"][0]["curso.size"] : 0) . "<theme>455a64";
 			}
 
 			/*
@@ -407,13 +375,13 @@
 				$cmb = explode("<gz>", $search);
 
 				if ($cmb[1] != "")
-					$where = "perfil_tela.id = " . $cmb[1];
+					$where = "curso.id = " . $cmb[1];
 
 				$daoFactory->beginTransaction();
-				$response["perfil_tela"] = $daoFactory->getPerfil_telaDao()->comboScr($where);
+				$response["curso"] = $daoFactory->getCursoDao()->comboScr($where);
 				$daoFactory->close();
 
-				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/perfil_tela/perfil_telaCMB.html", $response);
+				echo $view->parse($_DOCUMENT_ROOT . $_PACKAGE . "/html/curso/cursoCMB.html", $response);
 			}
 
 			/*
@@ -425,15 +393,13 @@
 					
 					echo $view->json($response);
 				} else {
-					$perfil_tela = new model\Perfil_tela();
-					$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setPerfil($form[0]);
-					$perfil_tela->setTipo_permissao($form[1]);
-					$perfil_tela->setTela($form[2]);
+					$curso = new model\Curso();
+					$curso->setDescricao(logicNull($form[0]));
+					$curso->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$curso->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getPerfil_telaDao()->create($perfil_tela);
+					$resultDao = $daoFactory->getCursoDao()->create($curso);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -458,16 +424,14 @@
 					
 					echo $view->json($response);
 				} else {
-					$perfil_tela = new model\Perfil_tela();
-					$perfil_tela->setId($code);
-					$perfil_tela->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
-					$perfil_tela->setPerfil($form[0]);
-					$perfil_tela->setTipo_permissao($form[1]);
-					$perfil_tela->setTela($form[2]);
+					$curso = new model\Curso();
+					$curso->setId($code);
+					$curso->setDescricao(logicNull($form[0]));
+					$curso->setCadastrado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
+					$curso->setModificado(date("Y-m-d H:i:s", (time() - 3600 * 3)));
 					
 					$daoFactory->beginTransaction();
-					$resultDao = $daoFactory->getPerfil_telaDao()->update($perfil_tela);
+					$resultDao = $daoFactory->getCursoDao()->update($curso);
 
 					if ($resultDao) {
 						$daoFactory->commit();
@@ -498,9 +462,9 @@
 					$daoFactory->beginTransaction();
 
 					for ($i = 1; $i < sizeof($lines); $i++) {
-						$where = "perfil_tela.id = " . $lines[$i];
+						$where = "curso.id = " . $lines[$i];
 						
-						$resultDao = $daoFactory->getPerfil_telaDao()->delete($where);
+						$resultDao = $daoFactory->getCursoDao()->delete($where);
 						$result = !$result ? false : (!$resultDao ? false : true);
 					}
 

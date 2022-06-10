@@ -7,9 +7,9 @@
  * @version 1.0.0, 26 Jul 2014
  */
 
-var dv_root = "http://localhost:8000/" + gz_project;
+var dv_root = "http://localhost/" + gz_project;
 // var dv_root = "https://@_YOUR_PROJECT.com.br";
-var dv_gateway = "http://localhost:8000/" + gz_project + "-api/api";
+var dv_gateway = "http://localhost/" + gz_project + "-api/api";
 // var dv_gateway = "https://@_YOUR_PROJECT.com.br/@_YOUR_PROJECT-api";
 
 /**

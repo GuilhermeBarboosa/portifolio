@@ -54,7 +54,7 @@
 	$call = "";
 	
 	// Set the column for answer after the call
-	$answer = "";
+	$answer = "perfis";
 
 	/*
 	 * Builder

@@ -792,3 +792,18 @@ function datalistReferencePerfil(datalist) {
 	}
 	isNull(datalist);
 }
+			
+function cursoHDL() { /* Insert your code here... */ }
+				
+function cursoRES(response, method) {
+	var res = JSON.parse(response);
+
+	if (res["message"] == "success") {
+		if (location.hash == "#from-screen") {
+			window.close();
+		} else {
+			requestHandler(method);
+		}
+	} else
+		showMessage(gz_titleAttetion, gz_msgErrorServer, "cancel();");
+}

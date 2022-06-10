@@ -16,7 +16,7 @@
 			
 	use lib\getz;
 			
-	$table = "perfis";
+	$table = "curso";
 			
 	/*
 	 * $fields = array("field" => "type");
@@ -28,7 +28,7 @@
 	 * photo, photoWithPosition, position, upload, order, link
 	 */ 
 	$fields = array("id" => "integer",
-			"perfil" => "string32",
+			"descricao" => "string32",
 			"cadastrado" => "new",
 			"modificado" => "now"
 	);
@@ -48,7 +48,7 @@
 	);
 				
 	// Set the table if this screen call another
-	$call = "perfil_tela";
+	$call = "";
 	
 	// Set the column for answer after the call
 	$answer = "";

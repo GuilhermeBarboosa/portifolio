@@ -120,13 +120,19 @@
 
 					</th>
 					
-					<th id="perfis.perfil" style="width:100%;" 
+					<th id="perfis.perfil" style="width:50%;" 
 							onclick="orderBy(this.id);">
 							
 						Perfil
 						
 					</th>
 					
+					<th style="width:50%;">
+							
+						Perfil_tela
+						
+					</th>			
+						
 				</tr>
 					
 				<one(data_not_found)><tr><td colspan="2"><gz>value</gz></td></tr></one>		
@@ -136,11 +142,19 @@
 					<tr id="<gz>perfis.line</gz>" 
 							onMouseOver="onFocus(<gz>perfis.line</gz>);" 
 							onMouseOut="outFocus(<gz>perfis.line</gz>);" 
-							onclick="selected(<gz>perfis.line</gz>);">
+							>
 
 						<td style="display:none;"><gz>perfis.id</gz></td>
 
-						<td><gz>perfis.perfil</gz></td>
+						<td onclick="selected(<gz>perfis.line</gz>);"><gz>perfis.perfil</gz></td>
+					
+						<td class="gz-link" onclick="goTo('/perfil_tela/called/<gz>perfis.id</gz>/1/historyBack/0');">
+									
+							<img class="dv-mr-ldpi" src="@_ROOT/mod/cms/img/icon/grid-next.png" />
+									
+							Perfil_tela
+
+						</td>
 						
 					</tr>
 
